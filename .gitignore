@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+.pytest_cache/
+venv/
+.venv/
+.DS_Store
+data/test_results/*.json
+*.sqlite3

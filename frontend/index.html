@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#18382e" />
+    <title>Snippet Studio</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Workspace navigation">
+        <a class="brand" href="/" aria-label="Snippet Studio home">
+          <span class="brand-mark" aria-hidden="true">S<span>/</span></span>
+          <span class="brand-name">snippet<span>studio</span></span>
+        </a>
+        <div class="workspace-label">WORKSPACE</div>
+        <nav class="primary-nav">
+          <a class="nav-item active" href="/" aria-current="page">
+            <span class="nav-glyph" aria-hidden="true">▦</span> Workbench
+          </a>
+          <span class="nav-item muted" aria-disabled="true">
+            <span class="nav-glyph" aria-hidden="true">≡</span> Review flow
+          </span>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="project-label">ACTIVE ENGINE</div>
+          <div class="engine-card">
+            <span class="engine-light"></span>
+            <div><strong>Gemini Explainer</strong><small id="key-status">Checking configuration</small></div>
+          </div>
+          <div class="sidebar-foot">HUMAN REVIEW REQUIRED</div>
+        </div>
+      </aside>
+
+      <main class="main-area">
+        <header class="topbar">
+          <div class="breadcrumb"><span>Workspace</span><b>/</b><strong>Workbench</strong></div>
+          <div class="topbar-status"><span></span> Local session</div>
+        </header>
+
+        <section class="content">
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow"><span class="eyebrow-line"></span> CODE DOCUMENTATION</div>
+              <h1>Snippet workbench<span class="heading-period">.</span></h1>
+              <p class="subtitle">Analyze, review, and approve a documentation proposal.</p>
+            </div>
+            <div class="privacy-note"><span aria-hidden="true">◉</span> Local workflow</div>
+          </div>
+
+          <div class="notice-bar" role="status">
+            <span class="notice-mark" aria-hidden="true">i</span>
+            <span><strong>Human approval required.</strong> Code is analyzed as data; it is never executed.</span>
+            <span class="notice-version">GEMINI</span>
+          </div>
+
+          <div class="workbench-grid">
+            <section class="tool-pane source-pane" aria-labelledby="source-title">
+              <div class="pane-heading">
+                <div class="pane-title-group"><span class="pane-index">01</span><h2 id="source-title">Source</h2></div>
+                <span class="format-tag">LANGUAGE AUTO-DETECTED</span>
+              </div>
+              <div class="editor-shell">
+                <div class="editor-meta">
+                  <span class="file-tab"><span class="file-dot"></span><span id="filename">untitled.py</span></span>
+                  <span class="editor-mode">SOURCE</span>
+                </div>
+                <div class="editor-body">
+                  <div class="line-numbers" id="line-numbers" aria-hidden="true">1</div>
+                  <textarea id="snippet" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-label="Code snippet" placeholder="Paste or type a code snippet..."></textarea>
+                </div>
+                <div class="editor-footer">
+                  <span id="source-state">Ready for input</span>
+                  <span><b id="line-count">0</b> lines <i></i> <b id="character-count">0</b> chars</span>
+                </div>
+              </div>
+              <div class="source-actions">
+                <span class="input-hint">Up to 50,000 characters <span>·</span> not executed</span>
+                <button class="button button-primary" id="analyze" type="button"><span aria-hidden="true">↗</span> Analyze snippet</button>
+              </div>
+            </section>
+
+            <section class="tool-pane output-pane" aria-labelledby="output-title">
+              <div class="pane-heading output-heading">
+                <div class="pane-title-group"><span class="pane-index">02</span><h2 id="output-title">Proposal</h2></div>
+                <span class="state-badge" id="workflow-state"><span></span> READY</span>
+              </div>
+              <div class="status-strip" id="status-strip" aria-label="Workflow status">
+                <span data-status="detected">Detected</span>
+                <span data-status="explained">Explained</span>
+                <span data-status="approved">Approved</span>
+                <span data-status="delivered">Delivered</span>
+              </div>
+              <div class="output-content">
+                <div class="empty-state" id="empty-state">
+                  <div class="empty-graphic" aria-hidden="true"><span>&lt;/&gt;</span><i></i><i></i></div>
+                  <h3>Your proposal will appear here</h3>
+                  <p>Submit a snippet to start a reviewed workflow.</p>
+                </div>
+                <div class="proposal-view" id="proposal-view" hidden>
+                  <div class="detected-row"><span class="result-kicker">DETECTED LANGUAGE</span><strong id="detected-language">—</strong></div>
+                  <label class="field-label" for="explanation">Explanation <span>EDITABLE BEFORE APPROVAL</span></label>
+                  <textarea id="explanation" class="proposal-field explanation-field" rows="4" disabled></textarea>
+                  <label class="field-label" for="documentation">Documentation <span>EDITABLE BEFORE APPROVAL</span></label>
+                  <textarea id="documentation" class="proposal-field documentation-field" rows="6" disabled></textarea>
+                  <div class="hash-row"><span>PROPOSAL HASH</span><code id="proposal-hash">—</code></div>
+                  <div class="review-controls" id="review-controls" hidden>
+                    <label class="field-label" for="approver-id">Reviewer ID</label>
+                    <input id="approver-id" value="local-reviewer" autocomplete="off" />
+                    <div class="review-actions">
+                      <button class="button button-reject" id="reject" type="button">Reject</button>
+                      <button class="button button-primary" id="approve" type="button"><span aria-hidden="true">✓</span> Approve &amp; format</button>
+                    </div>
+                  </div>
+                  <div class="final-result" id="final-result" hidden>
+                    <div class="final-heading"><span class="result-kicker">APPROVED MARKDOWN</span><div><button class="text-action" id="copy-markdown" type="button">Copy</button><button class="text-action" id="download-markdown" type="button">Download .md ↓</button></div></div>
+                    <pre id="formatted-markdown"></pre>
+                    <div class="chain-status" id="chain-status"></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <section class="activity-pane" aria-labelledby="activity-title">
+            <div class="activity-heading"><div><span class="pane-index">03</span><h2 id="activity-title">Workflow activity</h2></div><span id="event-count">0 EVENTS</span></div>
+            <div class="activity-empty" id="activity-empty">State transitions will be listed here.</div>
+            <ol class="event-list" id="event-list"></ol>
+            <div class="evidence-summary" id="evidence-summary" hidden></div>
+          </section>
+          <div class="page-foot"><span>SNIPPET STUDIO</span><span>HUMAN REVIEW · HASH-BOUND APPROVAL</span></div>
+        </section>
+      </main>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="/app.js" defer></script>
+  </body>
+</html>
